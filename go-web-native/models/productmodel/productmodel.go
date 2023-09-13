@@ -67,7 +67,7 @@ func Detail(id int) entities.Product {
 	var product entities.Product
 
 	err := config.DB.QueryRow(`
-		SELECT p.id, p.nama, p.stock, k.nama as kategori, 
+		SELECT p.id, p.nama, p.stock, p.id_kategori, k.nama as kategori, 
 			p.deskripsi, p.created_at, p.updated_at 
 		FROM produk p JOIN kategori k ON p.id_kategori = k.id
 		WHERE p.id = ?
@@ -75,6 +75,7 @@ func Detail(id int) entities.Product {
 		&product.Id,
 		&product.Nama,
 		&product.Stock,
+		&product.Kategori.Id,
 		&product.Kategori.Nama,
 		&product.Deskripsi,
 		&product.CreatedAt,
