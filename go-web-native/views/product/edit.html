@@ -39,8 +39,9 @@
                         <input type="text" class="form-control" name="nama" autocomplete="off" value="{{ .product.Nama }}">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="nama">Kategori {{ $id_kategori := .product.Kategori.Id }}</label>
+                        <label class="form-label" for="nama">Kategori</label>
                         <select class="form-select" name="id_kategori">
+                            {{ $id_kategori := .product.Kategori.Id }}
                             {{ range .categories }}
                             <option value="{{ .Id }}" {{ if eq .Id $id_kategori }}selected="selected"{{ end }}>{{ .Nama }}</option>
                             {{ end }}

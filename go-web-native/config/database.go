@@ -10,8 +10,8 @@ import (
 
 var host = "10.199.2.23"
 var port = 1433
-var user = "sa"
-var password = "b1e22f71."
+var user = ""
+var password = ""
 var database = "TUTORIYAL"
 
 var DB *sql.DB
