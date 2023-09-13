@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand bg-dark">
+        <div class="container">
+          <a class="navbar-brand text-light" href="#">Products</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active text-light" href="/products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-light" href="/categories">Categories</a>
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!-- end of navbar -->
+    <div class="container mt-3">
+        <h2>Add Product</h2>
+        <hr>
+        <div class="row d-flex justify-content-center">
+            <div class="col-4">
+                <form action="/products/add" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" for="nama">Nama</label>
+                        <input type="text" class="form-control" name="nama" autocomplete="off">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nama">Kategori</label>
+                        <select class="form-select" name="id_kategori">
+                            {{ range .categories }}
+                            <option value="{{ .Id }}">{{ .Nama }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nama">Deskripsi</label>
+                        <textarea class="form-control" name="deskripsi" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="nama">Stock</label>
+                        <input type="number" class="form-control" name="stock" autocomplete="off">
+                    </div>
+                    <div class="float-end">
+                        <a href="/products" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
