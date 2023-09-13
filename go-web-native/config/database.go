@@ -8,11 +8,11 @@ import (
 	_ "github.com/denisenkom/go-mssqldb"
 )
 
-var host = "10.199.2.23"
+var host = ""
 var port = 1433
 var user = ""
 var password = ""
-var database = "TUTORIYAL"
+var database = ""
 
 var DB *sql.DB
 
