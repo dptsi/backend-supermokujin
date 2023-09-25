@@ -26,16 +26,14 @@ func goDotEnvVariable(key string) string {
 
 func ConnectDB() {
 
-	var host = goDotEnvVariable("SQLSRV_HOST")
-	var port = goDotEnvVariable("SQLSRV_PORT")
-	var user = goDotEnvVariable("SQLSRV_USERNAME")
-	var password = goDotEnvVariable("SQLSRV_PASSWORD")
-	var database = goDotEnvVariable("SQLSRV_DATABASE")
-
-	sqlsrv_port, _ := strconv.Atoi(port) // convert string port to int port
+	host := goDotEnvVariable("SQLSRV_HOST")
+	port, _ := strconv.Atoi(goDotEnvVariable("SQLSRV_PORT"))
+	user := goDotEnvVariable("SQLSRV_USERNAME")
+	password := goDotEnvVariable("SQLSRV_PASSWORD")
+	database := goDotEnvVariable("SQLSRV_DATABASE")
 
 	conn := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s;",
-		host, user, password, sqlsrv_port, database)
+		host, user, password, port, database)
 	// conn := fmt.Sprintf("sqlserver://%s:%s@%s?port=%d&database=%s;",
 	// 	user, password, host, port, database)
 
