@@ -15,7 +15,7 @@ var DB *sql.DB
 
 func goDotEnvVariable(key string) string {
 
-	err := godotenv.Load(".env")
+	err := godotenv.Load(".env") // load from env file
 
 	if err != nil {
 		log.Fatalf("Error loading .env file")
