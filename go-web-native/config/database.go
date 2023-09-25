@@ -4,22 +4,38 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
+	"strconv"
 
 	_ "github.com/denisenkom/go-mssqldb"
+	"github.com/joho/godotenv"
 )
-
-var host = ""
-var port = 1433
-var user = ""
-var password = ""
-var database = ""
 
 var DB *sql.DB
 
+func goDotEnvVariable(key string) string {
+
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	return os.Getenv(key)
+}
+
 func ConnectDB() {
 
+	var host = goDotEnvVariable("SQLSRV_HOST")
+	var port = goDotEnvVariable("SQLSRV_PORT")
+	var user = goDotEnvVariable("SQLSRV_USERNAME")
+	var password = goDotEnvVariable("SQLSRV_PASSWORD")
+	var database = goDotEnvVariable("SQLSRV_DATABASE")
+
+	sqlsrv_port, _ := strconv.Atoi(port) // convert string port to int port
+
 	conn := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s;",
-		host, user, password, port, database)
+		host, user, password, sqlsrv_port, database)
 	// conn := fmt.Sprintf("sqlserver://%s:%s@%s?port=%d&database=%s;",
 	// 	user, password, host, port, database)
 
