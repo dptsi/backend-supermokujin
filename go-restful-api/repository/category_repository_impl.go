@@ -58,18 +58,17 @@ func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.
 	}
 }
 
-func (repository *CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) ([]domain.Category, error) {
+func (repository *CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []domain.Category {
 	SQL := `select id, name from category`
 	rows, err := tx.QueryContext(ctx, SQL)
 	helper.PanicIfError(err)
 
-	var categories = []domain.Category
+	var categories []domain.Category
 	for rows.Next() {
 		category := domain.Category{}
-		err:=rows.Scan(&category.Id, &category.Name)
+		err := rows.Scan(&category.Id, &category.Name)
 		helper.PanicIfError(err)
 		categories = append(categories, category)
-	} else {
-		return nil, errors.New("Category is empty")
 	}
+	return categories
 }
