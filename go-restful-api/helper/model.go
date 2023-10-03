@@ -16,7 +16,7 @@ func ToCategoryResponses(categories []domain.Category) []web.CategoryResponse {
 	var categoryResponses []web.CategoryResponse
 
 	for _, category := range categories {
-		categoryResponses = append(categoryResponses, helper.ToCategoryResponse(category))
+		categoryResponses = append(categoryResponses, ToCategoryResponse(category))
 	}
 
 	return categoryResponses

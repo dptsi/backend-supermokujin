@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"encoding/json"
 	"go-restful-api/helper"
 	"go-restful-api/model/web"
 	"go-restful-api/service"
@@ -88,3 +87,4 @@ func (controller *CategoryControllerImpl) FindAll(writer http.ResponseWriter, re
 	}
 
 	helper.WriteToResponseBody(writer, webResponse)
+}
