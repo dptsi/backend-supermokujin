@@ -17,17 +17,16 @@ func NewCategoryRepository() CategoryRepository {
 
 func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, category domain.Category) domain.Category {
 
-	var lastInsertId int64
+	var lastInsertId int
 
-	SQL := `insert into category(name) values (?);
-		SELECT ID = convert(bigint, SCOPE_IDENTITY())`
+	SQL := "insert into category(name) values (?); SELECT ID = convert(bigint, SCOPE_IDENTITY())"
 	result, err := tx.QueryContext(ctx, SQL, category.Name)
 
 	result.Scan(&lastInsertId)
 
 	helper.PanicIfError(err)
 
-	category.Id = int(lastInsertId)
+	category.Id = lastInsertId
 	return category
 }
 
