@@ -41,8 +41,6 @@ func NewDB() *sql.DB {
 
 	if err != nil {
 		log.Fatal("Error creating connection pool: " + err.Error())
-	} else {
-		log.Println("Database connected!")
 	}
 
 	db.SetMaxIdleConns(5)
