@@ -4,22 +4,28 @@ type Database struct {
 	Name string
 }
 
+type DatabasePostgreSQL Database
+type DatabaseMongoDB Database
+
 type DatabaseRepository struct {
-	DatabasePostgreSQL *Database
-	DatabaseMongoDB    *Database
+	DatabasePostgreSQL *DatabasePostgreSQL
+	DatabaseMongoDB    *DatabaseMongoDB
 }
 
-func NewDatabasePostgreSQL() *Database {
-	return &Database{Name: "PostgreSQL"}
-
-}
-
-func NewDatabaseMongoDB() *Database {
-	return &Database{Name: "MongoDB"}
+func NewDatabasePostgreSQL() *DatabasePostgreSQL {
+	return (*DatabasePostgreSQL)(&Database{Name: "PostgreSQL"})
 
 }
 
-func NewDatabaseRepository(postgreSQL *Database, mongodb *Database) *DatabaseRepository {
+func NewDatabaseMongoDB() *DatabaseMongoDB {
+	return (*DatabaseMongoDB)(&Database{Name: "MongoDB"})
+
+}
+
+func NewDatabaseRepository(
+	postgreSQL *DatabasePostgreSQL,
+	mongodb *DatabaseMongoDB,
+) *DatabaseRepository {
 	return &DatabaseRepository{DatabasePostgreSQL: postgreSQL, DatabaseMongoDB: mongodb}
 
 }
