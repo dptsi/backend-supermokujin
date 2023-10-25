@@ -25,11 +25,10 @@ var categorySet = wire.NewSet(
 	wire.Bind(new(controller.CategoryController), new(*controller.CategoryControllerImpl)),
 )
 
-func InitializedServer() *http.Server {
+func InitializedServer(option ...validator.Option) *http.Server {
 	wire.Build(
 		app.NewDB,
 		validator.New,
-		wire.Bind(new([]validator.Option), new(*validator.Validate)), // masih error
 		categorySet,
 		app.NewRouter,
 		wire.Bind(new(http.Handler), new(*httprouter.Router)),

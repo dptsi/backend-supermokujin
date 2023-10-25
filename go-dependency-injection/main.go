@@ -1,6 +1,7 @@
 package main
 
 import (
+	"go-dependency-injection/helper"
 	"go-dependency-injection/middleware"
 	"net/http"
 )
@@ -23,8 +24,8 @@ func main() {
 	// router := app.NewRouter(categoryController)
 	// authMiddleware := middleware.NewAuthMiddleware(router)
 
-	// server := NewServer(authMiddleware)
+	server := InitializedServer()
 
-	// err := server.ListenAndServe()
-	// helper.PanicIfError(err)
+	err := server.ListenAndServe()
+	helper.PanicIfError(err)
 }
