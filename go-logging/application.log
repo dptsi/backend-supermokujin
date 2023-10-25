@@ -1,0 +1,6 @@
+time="2023-10-25T09:36:16+07:00" level=info msg="Hello Logging"
+time="2023-10-25T09:36:16+07:00" level=warning msg="Hello Logging"
+time="2023-10-25T09:36:16+07:00" level=error msg="Hello Logging"
+time="2023-10-25T09:36:27+07:00" level=info msg="Hello Logging"
+time="2023-10-25T09:36:27+07:00" level=warning msg="Hello Logging"
+time="2023-10-25T09:36:27+07:00" level=error msg="Hello Logging"
