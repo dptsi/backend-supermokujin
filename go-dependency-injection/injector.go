@@ -29,7 +29,7 @@ func InitializedServer() *http.Server {
 	wire.Build(
 		app.NewDB,
 		validator.New,
-		wire.Bind(new(validator.Option), new(*validator.Validate)),
+		wire.Bind(new([]validator.Option), new(*validator.Validate)), // masih error
 		categorySet,
 		app.NewRouter,
 		wire.Bind(new(http.Handler), new(*httprouter.Router)),
