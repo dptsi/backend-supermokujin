@@ -19,7 +19,7 @@ func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, 
 
 	var lastInsertId int
 
-	SQL := "insert into category(name) values (?); SELECT ID = convert(bigint, SCOPE_IDENTITY())"
+	SQL := `insert into category(name) values (?); SELECT ID = convert(bigint, SCOPE_IDENTITY())`
 	err := tx.QueryRowContext(ctx, SQL, category.Name).Scan(&lastInsertId)
 
 	helper.PanicIfError(err)
