@@ -1,0 +1,1 @@
+IF EXISTS (SELECT * FROM sys.objects WHERE name = 'first') DROP TABLE first

@@ -1,0 +1,1 @@
+IF EXISTS (SELECT * FROM sys.objects WHERE name = 'second') DROP TABLE second

@@ -32,12 +32,13 @@ func NewDB() *sql.DB {
 
 	conn := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d;database=%s;",
 		host, user, password, port, database)
-	// conn := fmt.Sprintf("sqlserver://%s:%s@%s?port=%d&database=%s;",
+	db, err := sql.Open("mssql", conn)
+
+	// conn := fmt.Sprintf("sqlserver://%s:%s@%s:%d?database=%s;",
 	// 	user, password, host, port, database)
+	// db, err := sql.Open("sqlserver", conn)
 
 	// log.Println(conn)
-
-	db, err := sql.Open("mssql", conn)
 
 	if err != nil {
 		log.Fatal("Error creating connection pool: " + err.Error())
@@ -49,4 +50,22 @@ func NewDB() *sql.DB {
 	db.SetConnMaxIdleTime(10 * time.Minute)
 
 	return db
+
+	// migrate create -ext sql -dir db/migrations create_table_first
+	// migrate create -ext sql -dir db/migrations create_table_second
+	// migrate create -ext sql -dir db/migrations create_table_third
+
+	// up semua versi
+	// migrate -database "sqlserver://tutorial:b1e22f71..@10.199.2.23:1433?database=TUTORIAL_MIG;" -path db/migrations up
+	// up 1 versi
+	// migrate -database "sqlserver://tutorial:b1e22f71..@10.199.2.23:1433?database=TUTORIAL_MIG;" -path db/migrations up 1
+	// up 1 versi lagi
+	// migrate -database "sqlserver://tutorial:b1e22f71..@10.199.2.23:1433?database=TUTORIAL_MIG;" -path db/migrations up 1
+	// down semua versi
+	// migrate -database "sqlserver://tutorial:b1e22f71..@10.199.2.23:1433?database=TUTORIAL_MIG;" -path db/migrations down
+	// down 1 versi dari yang terakhir
+	// migrate -database "sqlserver://tutorial:b1e22f71..@10.199.2.23:1433?database=TUTORIAL_MIG;" -path db/migrations down 1
+
+	// membersihkan dirty migration ke versi sebelumnya (versi yang works)
+	// migrate -database "sqlserver://tutorial:b1e22f71..@10.199.2.23:1433?database=TUTORIAL_MIG;" -path db/migrations force <versi yang works>
 }

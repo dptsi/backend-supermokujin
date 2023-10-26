@@ -6,7 +6,7 @@ Accept: application/json
 Content-Type: application/json
 
 ### find by id
-GET http://localhost:8088/api/categories/5
+GET http://localhost:8088/api/categories/4
 X-API-Key: RAHASIA
 Accept: application/json
 Content-Type: application/json
@@ -18,17 +18,17 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Artificial"
+    "name": "Clothing"
 }
 
 ### update categories by id
-PUT http://localhost:8088/api/categories/5
+PUT http://localhost:8088/api/categories/1
 X-API-Key: RAHASIA
 Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "Artificial"
+    "name": "Gadget"
 }
 
 ### DELETE categories by id
